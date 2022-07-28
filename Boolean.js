@@ -11,3 +11,4 @@ x=-0; //  retrun false
 x= 10 / 0; // NaN   retrun false
 console.log(Boolean(0))
 console.log(Boolean(""))
+
