@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .update-color{
+            color: aquamarine;
+
+        }
+    </style>
+</head>
+<body>
+
+<h1 id="getEBId">
+    The HTML DOM document object is the owner of all other objects in your web page.
+</h1>
+
+<ul id="myList">
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+</ul>
+
+
+
+<h3 class="getEBClass"> Finding HTML Elements 1</h3>
+<h3 class="getEBClass"> Finding HTML Elements 2</h3>
+<h3 class="getEBClass"> Finding HTML Elements 3</h3>
+<p>document.getElementById(id)	Find an element by element id</p>
+<p>document.getElementsByTagName(name)	Find elements by tag name</p>
+<p>document.getElementsByClassName(name)	Find elements by class name</p>
+
+
+<p >
+    element.innerHTML =  new html content	Change the inner HTML of an element
+    <b id="changeInnerHTMl" height="25px"></b>
+</p>
+<p > element.attribute = new value	Change the attribute value of an HTML element </p>
+<p > element.style.property = new style	Change the style of an HTML element </p>
+<p > Method	Description </p>
+<p > element.setAttribute(attribute, value)	Change the attribute value of an HTML element</p>
+
+
+<h1>Adding and Deleting Elements</h1>
+
+<button onclick="addElement()">Add element</button>
+<button onclick="removeElement()">Remove element</button>
+<button onclick="appendChild()">Add child</button>
+<button id="simpleClick">simpleClick</button>
+<p id="dynamicid"></p>
+<script>
+    // Get element by id return one element and first matching id
+    console.log(document.getElementById('getEBId'))
+
+    // Get element by class name return all element
+    let elements  = document.getElementsByClassName('getEBClass');
+    console.log(elements[0])
+    console.log(elements.length)
+
+    for (let element of elements) {
+        element.style.color="red";
+        element.setAttribute("data-id", 1);
+    }
+
+    // Get element by tag name return all element
+    let tagElements = document.getElementsByTagName('p');
+    for (const tagElement of tagElements) {
+        console.log(tagElement.innerHTML)
+    }
+
+
+    // Changing HTML Elements
+    document.getElementById('changeInnerHTMl').innerHTML = "I am change inner html "
+    setTimeout(function (){
+        document.getElementById('changeInnerHTMl').style.fontSize = "50px"
+
+    },2000)
+    setTimeout(function (){
+        document.getElementById('changeInnerHTMl').setAttribute('class', 'update-color')
+    },3000)
+
+    function addElement(){
+        let element = document.createElement('h1');
+        element.innerHTML = "Dynamically create element";
+        element.style.fontSize= "32px";
+        element.setAttribute('class','update-color')
+        element.setAttribute('id', 'dynamic-create-element')
+        document.getElementById('dynamicid').append(element)
+    }
+
+    function removeElement(){
+        // document.getElementById('getEBId').remove() // complete remove element
+        let element = document.getElementById('myList')
+        element.removeChild(element.firstElementChild) // remove first child from element
+    }
+
+    function appendChild(){
+        // Create an "li" node:
+        const node = document.createElement("li");
+
+        // Create a text node:
+        const textnode = document.createTextNode("Water");
+
+        // Append the text node to the "li" node:
+        node.appendChild(textnode);
+
+        // Append the "li" node to the list:
+        document.getElementById("myList").appendChild(node);
+    }
+
+    document.getElementById('simpleClick').onclick = function(){
+        alert("DSds")
+    }
+</script>
+</body>
+</html>
